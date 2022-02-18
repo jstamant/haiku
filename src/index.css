@@ -1,0 +1,10 @@
+#content p {
+  margin: 0;
+}
+
+button {
+  padding: 1em;
+  margin: 1em;
+  border-radius: 1em;
+  border-style: none;
+}
