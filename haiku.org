@@ -1,0 +1,73 @@
+#+title: Haiku by Justin
+#+startup: showall
+
+* Techs connect in a single try
+[2021-11-30 Tue 14:10]
+#+begin_verse
+A true tech connects
+to 15454 (fifteen-four-fifty-four)
+in a single try
+#+end_verse
+
+* Firmware upgrades
+[2021-02-04 Thu 16:14]
+#+begin_verse
+Celebrate early:
+What could possibly go wrong
+with firmware upgrades?
+#+end_verse
+
+* Lacerations
+[2020-12-10 Thu 09:33]
+#+begin_verse
+Moving heavy things
+like multicouplers beget
+a laceration.
+#+end_verse
+
+* Weekend
+[2020-12-04 Fri 16:23]
+
+#+begin_verse
+Approaching weekend:
+Thirty more minutes to go.
+Imminent freedom!
+#+end_verse
+
+* Missing order number
+[2020-02-13 Thu 15:05]
+
+#+begin_verse
+No order number;
+Keeping me from completing
+time entry again. ☠
+#+end_verse
+
+* Mandatory CBT
+[2019-12-18 Wed 08:25]
+
+#+begin_verse
+As an FYI,
+Vital issues CBT
+is mandatory.
+#+end_verse
+
+* Buzzwords
+[2019-12-09 Mon 13:00]
+
+#+begin_verse
+Executive Leadership.
+Enterprise-wide Corporate initiatives;
+Opportunities moving forward.
+#+end_verse
+
+* Two-pronged approach
+[2019-11-21 Thu 12:09]
+
+#+begin_verse
+Action-planning!
+Two-pronged approach...
+Action-planning simultaneously!
+#+end_verse
+
+

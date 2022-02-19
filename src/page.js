@@ -1,21 +1,39 @@
 import React from 'react';
 
+import Button from './button';
+import Counter from './counter';
+import Haiku from './haiku';
+
 class Page extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      "selection": 0
+    };
+    // Bind functions that are used in events and/or callbacks
+    this.nextHaiku = this.nextHaiku.bind(this);
+    this.previousHaiku = this.previousHaiku.bind(this);
+  }
+
   render() {
     return(
       <div>
-        <h1 id="title">HAIKU TITLE</h1>
-        <div id="content">
-        <p>Sample content</p>
-        <p>Second Line</p>
-        <p>Last line</p>
-        </div>
-        <p id="counter">Haiku 1/13</p>
-        <button id="next">Next</button>
-        <button id="previous">Previous</button>
-        <button id="random">Random Haiku</button>
+        <Haiku selection={this.state.selection} />
+        <Counter selection={this.state.selection}/>
+        <button onClick={this.nextHaiku}>NEXT</button>
+        <button onClick={this.previousHaiku}>PREVIOUS</button>
+        <Button id="next" />
+        <Button id="previous" />
+        <Button id="random" />
       </div>
     );
+  }
+
+  nextHaiku() {
+    this.setState({selection: this.state.selection + 1});
+  }
+  previousHaiku() {
+    this.setState({selection: this.state.selection - 1});
   }
 }
 
