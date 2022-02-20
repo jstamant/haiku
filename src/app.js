@@ -17,6 +17,7 @@ class App extends React.Component {
     this.state.total = this.state.haikus.length;
     // Bind functions that are used in events and/or callbacks
     this.changeHaiku = this.changeHaiku.bind(this);
+    this.randomHaiku = this.randomHaiku.bind(this);
   }
 
   render() {
@@ -27,7 +28,7 @@ class App extends React.Component {
       <>
         <Haiku title={title} date={date} content={content} />
         <Counter selection={this.state.selection} total={this.state.total} />
-        <Interface changeHaiku={this.changeHaiku}>TEST</Interface>
+        <Interface changeHaiku={this.changeHaiku} randomHaiku={this.randomHaiku}>TEST</Interface>
       </>
     );
   }
@@ -35,6 +36,12 @@ class App extends React.Component {
   changeHaiku(next=true) {
     const direction = next ? 1 : -1;
     this.setState({selection: this.state.selection + direction});
+  }
+
+  randomHaiku() {
+    const newSelection = Math.floor(Math.random() * this.state.total);
+    console.log(newSelection);
+    this.setState({selection: newSelection});
   }
 }
 
