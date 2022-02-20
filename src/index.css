@@ -7,8 +7,21 @@ body {
   margin: auto;
 }
 
+#haiku {
+  background-color: #eee;
+  padding: 2em;
+  border-radius: 2em;
+  margin: 2em 0;
+}
 #haiku * {
   text-align: center;
+}
+#haiku .title {
+  margin: 0;
+  font-family: 'Roboto Serif', sans-serif;
+}
+#haiku .date {
+  margin-top: 0;
 }
 #content p {
   margin: 0;
