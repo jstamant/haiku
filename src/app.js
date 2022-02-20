@@ -6,7 +6,7 @@ import Interface from './interface';
 
 import HaikuList from './haikulist';
 
-class Page extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,4 +38,4 @@ class Page extends React.Component {
   }
 }
 
-export default Page;
+export default App;

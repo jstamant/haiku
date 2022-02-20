@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Page from './page';
+import App from './app';
 
 ReactDOM.render(
-  <Page />,
+  <App />,
   document.getElementById('root')
 );
