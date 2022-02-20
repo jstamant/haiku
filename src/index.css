@@ -1,11 +1,20 @@
+/*
+ * Global settings
+ */
+
 body {
   margin: 0;
+  font-size: 100%; /* All em sizes are constrained by the user's browser's font size */
 }
 
 #root {
   width: 35.5em;
   margin: auto;
 }
+
+/*
+ * Haiku div styling
+ */
 
 #haiku {
   background-color: #eee;
@@ -27,14 +36,36 @@ body {
   margin: 0;
 }
 
+/*
+ * Counter div styling
+ */
+
 #counter {
   text-align: center;
 }
 
+/*
+ * Interface/buttons styling
+ */
+
+#interface .half {
+  width: 50%;
+  box-sizing: border-box;
+  padding: 0 1em;
+  margin: 1em 0;
+  display: inline-block;
+}
+#interface .full {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 1em;
+  margin: 1em 0;
+  display: inline-block;
+}
 button {
   padding: 1em;
-  margin: 1em;
-  width: 80%;
+  margin: 0;
+  width: 100%;
   border-radius: 1em;
   border-style: none;
 }
