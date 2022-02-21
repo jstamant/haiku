@@ -36,7 +36,14 @@ class App extends React.Component {
     );
   }
 
+  /* Commits the haiku selection by updating this component's state. Checks for
+   * boundary conditions and prevents them.
+   */
   setSelection(selection) {
+    if (selection >= this.state.total)
+      selection = this.state.total - 1;
+    if (selection < 0)
+      selection = 0;
     this.setState({selection: selection});
   }
 
