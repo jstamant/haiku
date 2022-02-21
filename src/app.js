@@ -37,16 +37,20 @@ class App extends React.Component {
     );
   }
 
-  changeHaiku(next=true) {
-    const direction = next ? 1 : -1;
-    this.setState({selection: this.state.selection + direction});
+  setSelection(selection) {
+    this.setState({selection: selection});
   }
 
-  // TODO need to make sure you don't select the same haiku
+  changeHaiku(next=true) {
+    this.setSelection(this.state.selection + (next ? 1 : -1));
+  }
+
   randomHaiku() {
-    const newSelection = Math.floor(Math.random() * this.state.total);
-    console.log(newSelection);
-    this.setState({selection: newSelection});
+    let newSelection = Math.floor(Math.random() * this.state.total);
+    // Prevent the selection of the currently displayed haiku
+    while (newSelection === this.state.selection)
+      newSelection = Math.floor(Math.random() * this.state.total);
+    this.setSelection(newSelection);
   }
 }
 
