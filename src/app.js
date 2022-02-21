@@ -16,7 +16,6 @@ class App extends React.Component {
     this.state.total = this.state.haikus.length;
     // Bind functions that are used in events and/or callbacks
     this.changeHaiku = this.changeHaiku.bind(this);
-    this.randomHaiku = this.randomHaiku.bind(this);
   }
 
   render() {
@@ -32,7 +31,7 @@ class App extends React.Component {
           selection={this.state.selection}
           total={this.state.total}
         />
-        <Interface changeHaiku={this.changeHaiku} randomHaiku={this.randomHaiku}>TEST</Interface>
+        <Interface changeHaiku={this.changeHaiku}>TEST</Interface>
       </>
     );
   }
@@ -41,16 +40,25 @@ class App extends React.Component {
     this.setState({selection: selection});
   }
 
-  changeHaiku(next=true) {
-    this.setSelection(this.state.selection + (next ? 1 : -1));
-  }
-
-  randomHaiku() {
-    let newSelection = Math.floor(Math.random() * this.state.total);
-    // Prevent the selection of the currently displayed haiku
-    while (newSelection === this.state.selection)
-      newSelection = Math.floor(Math.random() * this.state.total);
-    this.setSelection(newSelection);
+  /* Changes displayed haiku to the next haiku, to the previous haiku, or to a
+   * random haiku.
+   */
+  changeHaiku(command="next") {
+    switch (command) {
+    default: case "next":
+      this.setSelection(this.state.selection + 1);
+      break;
+    case "previous":
+      this.setSelection(this.state.selection - 1);
+      break;
+    case "random":
+      let newSelection = Math.floor(Math.random() * this.state.total);
+      // Prevent the selection of the currently displayed haiku
+      while (newSelection === this.state.selection)
+        newSelection = Math.floor(Math.random() * this.state.total);
+      this.setSelection(newSelection);
+      break;
+    }
   }
 }
 
