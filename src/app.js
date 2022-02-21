@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Counter from './counter';
 import Haiku from './haiku';
 import Interface from './interface';
 
@@ -26,8 +25,13 @@ class App extends React.Component {
     const content = this.state.haikus[this.state.selection].content;
     return(
       <>
-        <Haiku title={title} date={date} content={content} />
-        <Counter selection={this.state.selection} total={this.state.total} />
+        <Haiku
+          title={title}
+          date={date}
+          content={content}
+          selection={this.state.selection}
+          total={this.state.total}
+        />
         <Interface changeHaiku={this.changeHaiku} randomHaiku={this.randomHaiku}>TEST</Interface>
       </>
     );
@@ -38,6 +42,7 @@ class App extends React.Component {
     this.setState({selection: this.state.selection + direction});
   }
 
+  // TODO need to make sure you don't select the same haiku
   randomHaiku() {
     const newSelection = Math.floor(Math.random() * this.state.total);
     console.log(newSelection);

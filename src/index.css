@@ -2,9 +2,15 @@
  * Global settings
  */
 
+html {
+  background-color: #f5f5ed;
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-size: 100%; /* All em sizes are constrained by the user's browser's font size */
+  color: #3f3b3b;
 }
 
 #root {
@@ -13,35 +19,52 @@ body {
 }
 
 /*
- * Haiku div styling
+ * Haiku card styling
  */
 
 #haiku {
-  background-color: #eee;
+  background-color: #ede6d5;
   padding: 2em;
   border-radius: 2em;
   margin: 2em 0;
+  font-family: 'Permanent Marker', sans-serif;
 }
 #haiku * {
   text-align: center;
 }
 #haiku .title {
   margin: 0;
-  font-family: 'Roboto Serif', sans-serif;
+  font-weight: normal;
+  font-size: 2em;
 }
-#haiku .date {
-  margin-top: 0;
+#haiku .content {
 }
-#content p {
+#haiku .content p {
   margin: 0;
+  font-family: 'Kalam', sans-serif;
+  font-variant: small-caps;
+  font-weight: bold;
+  font-size: 1.5em;
+  height: 1.2em; /* Adjusted for 'Kalam' font */
 }
-
-/*
- * Counter div styling
- */
-
-#counter {
+#haiku .signature {
+  margin: 1em auto 0 auto;
+  width: 90%;
+}
+#haiku .signature div {
+  width: 33%;
+  margin: 0;
+  display: inline-block;
+}
+#haiku .signature .date {
+  text-align: left;
+}
+#haiku .signature .counter {
   text-align: center;
+}
+#haiku .signature .author {
+  margin-left: auto;
+  text-align: right;
 }
 
 /*
