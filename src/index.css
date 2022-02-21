@@ -8,13 +8,14 @@ html {
 }
 
 body {
+  padding: 2em 1em;
   margin: 0;
   font-size: 100%; /* All em sizes are constrained by the user's browser's font size */
   color: #3f3b3b;
 }
 
 #root {
-  width: 35.5em;
+  max-width: 35.5em;
   margin: auto;
 }
 
@@ -26,7 +27,8 @@ body {
   background-color: #ede6d5;
   padding: 2em;
   border-radius: 2em;
-  margin: 2em 0;
+  margin: 0; /* Top padding is done by the body element */
+  margin-bottom: 2em;
   font-family: 'Permanent Marker', sans-serif;
 }
 #haiku * {
@@ -36,8 +38,10 @@ body {
   margin: 0;
   font-weight: normal;
   font-size: 2em;
+  line-height: 1em; /* Adjusted for 'Permanent Marker' font */
 }
 #haiku .content {
+  margin: 0.5em 0;
 }
 #haiku .content p {
   margin: 0;
@@ -52,19 +56,35 @@ body {
   width: 90%;
 }
 #haiku .signature div {
-  width: 33%;
   margin: 0;
   display: inline-block;
 }
 #haiku .signature .date {
+  width: 50%;
   text-align: left;
 }
 #haiku .signature .counter {
+  width: 100%;
+  margin: 0 auto;
   text-align: center;
 }
 #haiku .signature .author {
-  margin-left: auto;
+  width: 50%;
   text-align: right;
+}
+@media screen and (max-width: 35.5em) {
+  #haiku .signature div {
+    width: 100%;
+    display: block;
+  }
+  #haiku .signature .date {
+    width: 100%;
+    text-align: center;
+  }
+  #haiku .signature .author {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 /*
