@@ -1,36 +1,36 @@
 {
   "haikus": [
-    { "title": "Techs connect in a single try",
-      "date": "2021-11-30 Tue 14:10",
-      "content": "A true tech connects\nto 15454 (fifteen-four-fifty-four)\nin a single try"
-    },
-    { "title": "Firmware upgrades",
-      "date": "2021-02-04 Thu 16:14",
-      "content": "Celebrate early:\nWhat could possibly go wrong\nwith firmware upgrades?"
-    },
-    { "title": "Lacerations",
-      "date": "2020-12-10 Thu 09:33",
-      "content": "Moving heavy things\nlike multicouplers beget\na laceration."
-    },
-    { "title": "Weekend",
-      "date": "2020-12-04 Fri 16:23",
-      "content": "Approaching weekend:\nThirty more minutes to go.\nImminent freedom!"
-    },
-    { "title": "Missing order number",
-      "date": "2020-02-13 Thu 15:05",
-      "content": "No order number;\nKeeping me from completing\ntime entry again. ☠"
-    },
-    { "title": "Mandatory CBT",
-      "date": "2019-12-18 Wed 08:25",
-      "content": "As an FYI,\nVital issues CBT\nis mandatory."
+    { "title": "Two-pronged approach",
+      "date": "2019-11-21 Thu 12:09",
+      "content": "Action-planning!\nTwo-pronged approach...\nAction-planning simultaneously!"
     },
     { "title": "Buzzwords",
       "date": "2019-12-09 Mon 13:00",
       "content": "Executive Leadership.\nEnterprise-wide Corporate initiatives;\nOpportunities moving forward."
     },
-    { "title": "Two-pronged approach",
-      "date": "2019-11-21 Thu 12:09",
-      "content": "Action-planning!\nTwo-pronged approach...\nAction-planning simultaneously!"
+    { "title": "Mandatory CBT",
+      "date": "2019-12-18 Wed 08:25",
+      "content": "As an FYI,\nVital issues CBT\nis mandatory."
+    },
+    { "title": "Missing order number",
+      "date": "2020-02-13 Thu 15:05",
+      "content": "No order number;\nKeeping me from completing\ntime entry again. ☠"
+    },
+    { "title": "Weekend",
+      "date": "2020-12-04 Fri 16:23",
+      "content": "Approaching weekend:\nThirty more minutes to go.\nImminent freedom!"
+    },
+    { "title": "Lacerations",
+      "date": "2020-12-10 Thu 09:33",
+      "content": "Moving heavy things\nlike multicouplers beget\na laceration."
+    },
+    { "title": "Firmware upgrades",
+      "date": "2021-02-04 Thu 16:14",
+      "content": "Celebrate early:\nWhat could possibly go wrong\nwith firmware upgrades?"
+    },
+    { "title": "Techs connect in a single try",
+      "date": "2021-11-30 Tue 14:10",
+      "content": "A true tech connects\nto 15454 (fifteen-four-fifty-four)\nin a single try"
     }
   ]
 }
