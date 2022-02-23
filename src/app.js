@@ -70,7 +70,7 @@ class App extends React.Component {
       this.setSelection(this.state.selection - 1);
       break;
     case "random":
-      let newSelection = Math.floor(Math.random() * this.state.total);
+      let newSelection = Math.floor(Math.random() * this.state.total) + 1;
       // Prevent the selection of the currently displayed haiku
       while (newSelection === this.state.selection)
         newSelection = Math.floor(Math.random() * this.state.total);
