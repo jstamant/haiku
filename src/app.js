@@ -20,7 +20,7 @@ class App extends React.Component {
     this.state.selection = this.state.total;
     // Or display the haiku as indicated by the query string, if valid
     const url = new URL(window.location.href);
-    const haiku = url.searchParams.get('id');
+    const haiku = parseInt(url.searchParams.get('id'));
     if (1 <= haiku && haiku <= this.state.total)
       this.state.selection = haiku;
 
