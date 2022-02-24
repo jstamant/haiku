@@ -14,13 +14,12 @@ class App extends React.Component {
       selection: 1,
     };
     this.haikus = HaikuList;
-    this.totalHaikus = this.haikus.length;
     // Initially display the most recent haiku
-    this.state.selection = this.totalHaikus;
+    this.state.selection = this.haikus.length;
     // Or display the haiku as indicated by the query string, if valid
     const url = new URL(window.location.href);
     const haiku = parseInt(url.searchParams.get('id'));
-    if (1 <= haiku && haiku <= this.totalHaikus)
+    if (1 <= haiku && haiku <= this.haikus.length)
       this.state.selection = haiku;
     // Add the initially displayed haiku to the deck (for animation purposes)
     this.deck = [];
@@ -40,13 +39,10 @@ class App extends React.Component {
 
   render() {
     this.updateQueryString(this.state.selection);
-    const title = this.haikus[this.state.selection-1].title;
-    const date = this.haikus[this.state.selection-1].date;
-    const content = this.haikus[this.state.selection-1].content;
     return(
       <>
         {this.deck.map((haiku) => {return(haiku);})}
-        <Interface changeHaiku={this.changeHaiku}>TEST</Interface>
+        <Interface changeHaiku={this.changeHaiku} />
       </>
     );
   }
@@ -55,8 +51,8 @@ class App extends React.Component {
    * boundary conditions and prevents them.
    */
   setSelection(selection) {
-    if (selection > this.totalHaikus)
-      selection = this.totalHaikus;
+    if (selection > this.haikus.length)
+      selection = this.haikus.length;
     if (selection <= 0)
       selection = 1;
     this.deck.push(
@@ -68,6 +64,7 @@ class App extends React.Component {
         selection={selection}
         total={this.haikus.length}
       />);
+    this.deck.shift();
     this.setState({selection: selection});
   }
 
@@ -87,7 +84,7 @@ class App extends React.Component {
     case "random":
       do {
         // Prevent the currently displayed haiku from being selected again
-        newSelection = Math.floor(Math.random() * this.totalHaikus) + 1;
+        newSelection = Math.floor(Math.random() * this.haikus.length) + 1;
       } while (newSelection === this.state.selection);
       break;
     }
