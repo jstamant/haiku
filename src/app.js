@@ -75,21 +75,23 @@ class App extends React.Component {
    * random haiku.
    */
   changeHaiku(command="next") {
+    let newSelection;
     switch (command) {
     default: case "next":
+      newSelection = this.state.selection + 1;
       this.setSelection(this.state.selection + 1);
       break;
     case "previous":
-      this.setSelection(this.state.selection - 1);
+      newSelection = this.state.selection - 1;
       break;
     case "random":
-      let newSelection = Math.floor(Math.random() * this.totalHaikus) + 1;
-      // Prevent the selection of the currently displayed haiku
-      while (newSelection === this.state.selection)
-        newSelection = Math.floor(Math.random() * this.totalHaikus);
-      this.setSelection(newSelection);
+      do {
+        // Prevent the currently displayed haiku from being selected again
+        newSelection = Math.floor(Math.random() * this.totalHaikus) + 1;
+      } while (newSelection === this.state.selection);
       break;
     }
+    this.setSelection(newSelection);
   }
 
   /* Update the URL in the browser so that its query string matches the
