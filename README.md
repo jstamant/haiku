@@ -10,3 +10,5 @@ integrations if I want to develop a full-fledged app.
 I love writing haikus about cringe-y work-related buzzwords. Even though sharing
 my haikus by email is the most thematic, I'd love cleaner way to share them.
 Enter graphic design and web development!
+
+This app works entirely client-side.

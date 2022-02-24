@@ -12,18 +12,24 @@ body {
   margin: 0;
   font-size: 100%; /* All em sizes are constrained by the user's browser's font size */
   color: #3f3b3b;
+  overflow: hidden;
 }
 
 #root {
   max-width: 35.5em;
   margin: auto;
+  position: relative; /* Used to position the haiku animations in it */
 }
 
 /*
  * Haiku card styling
  */
 
-#haiku {
+.haiku {
+  position: absolute;
+  width: 100%;
+  box-sizing: border-box;
+
   background-color: #ede6d5;
   padding: 2em;
   border-radius: 2em;
@@ -31,19 +37,19 @@ body {
   margin-bottom: 2em;
   font-family: 'Permanent Marker', sans-serif;
 }
-#haiku * {
+.haiku * {
   text-align: center;
 }
-#haiku .title {
+.haiku .title {
   margin: 0;
   font-weight: normal;
   font-size: 2em;
   line-height: 1em; /* Adjusted for 'Permanent Marker' font */
 }
-#haiku .content {
+.haiku .content {
   margin: 0.5em 0;
 }
-#haiku .content p {
+.haiku .content p {
   margin: 0;
   font-family: 'Kalam', sans-serif;
   font-variant: small-caps;
@@ -51,37 +57,37 @@ body {
   font-size: 1.5em;
   height: 1.2em; /* Adjusted for 'Kalam' font */
 }
-#haiku .signature {
+.haiku .signature {
   margin: 1em auto 0 auto;
   width: 90%;
 }
-#haiku .signature div {
+.haiku .signature div {
   margin: 0;
   display: inline-block;
 }
-#haiku .signature .date {
+.haiku .signature .date {
   width: 50%;
   text-align: left;
 }
-#haiku .signature .counter {
+.haiku .signature .counter {
   width: 100%;
   margin: 0 auto;
   text-align: center;
 }
-#haiku .signature .author {
+.haiku .signature .author {
   width: 50%;
   text-align: right;
 }
 @media screen and (max-width: 35.5em) {
-  #haiku .signature div {
+  .haiku .signature div {
     width: 100%;
     display: block;
   }
-  #haiku .signature .date {
+  .haiku .signature .date {
     width: 100%;
     text-align: center;
   }
-  #haiku .signature .author {
+  .haiku .signature .author {
     width: 100%;
     text-align: center;
   }

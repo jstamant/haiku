@@ -3,7 +3,7 @@ import React from 'react';
 class Interface extends React.Component {
   render() {
     return(
-      <div id="interface">
+      <div id="interface" className="animate__animated animate__fadeIn animate__delay-1s animate__slow">
         <div className="half">
           <button onClick={() => this.props.changeHaiku("previous")}>Previous</button>
         </div>

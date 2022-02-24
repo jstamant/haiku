@@ -3,7 +3,8 @@ import React from 'react';
 class Haiku extends React.Component {
   render() {
     return(
-      <div id="haiku">
+      <div id={this.props.id}
+           className="haiku animate__animated animate__fadeInRight">
         <h1 className="title">{this.props.title}</h1>
         <div className="content">
           <p>{this.props.content[0]}</p>
@@ -11,7 +12,7 @@ class Haiku extends React.Component {
           <p>{this.props.content[2]}</p>
         </div>
         <div className="signature">
-          <div className="counter">{this.props.selection+1}/{this.props.total}</div>
+          <div className="counter">{this.props.selection}/{this.props.total}</div>
           <div className="date">{this.props.date}</div>
           <div className="author">Justin St-Amant</div>
         </div>
