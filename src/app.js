@@ -23,15 +23,9 @@ class App extends React.Component {
       this.state.selection = haiku;
     // Add the initially displayed haiku to the deck (for animation purposes)
     this.deck = [];
-    this.deck.push(
-      <Haiku
-        id="haiku"
-        title={this.haikus[this.state.selection-1].title}
-        date={this.haikus[this.state.selection-1].date}
-        content={this.haikus[this.state.selection-1].content}
-        selection={this.state.selection}
-        total={this.haikus.length}
-      />);
+    this.deck.push(this.haikus[this.state.selection-1]);
+    // And add a "state" property for animation
+    this.deck[0].state = "fadeIn";
 
     // Bind functions that are used in events and/or callbacks
     this.changeHaiku = this.changeHaiku.bind(this);
@@ -41,7 +35,19 @@ class App extends React.Component {
     this.updateQueryString(this.state.selection);
     return(
       <>
-        {this.deck.map((haiku) => {return(haiku);})}
+        {this.deck.map((haiku) => {
+          const fadeOut = (haiku.state == "fadeIn") ? false : true;
+          return(
+            <Haiku
+              id="haiku"
+              fadeOut={fadeOut}
+              title={this.haikus[this.state.selection-1].title}
+              date={this.haikus[this.state.selection-1].date}
+              content={this.haikus[this.state.selection-1].content}
+              selection={this.state.selection}
+              total={this.haikus.length}
+            />);
+        })}
         <Interface changeHaiku={this.changeHaiku} />
       </>
     );
@@ -64,7 +70,7 @@ class App extends React.Component {
         selection={selection}
         total={this.haikus.length}
       />);
-    this.deck.shift();
+    // this.deck.shift();
     this.setState({selection: selection});
   }
 

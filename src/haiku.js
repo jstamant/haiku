@@ -4,7 +4,10 @@ class Haiku extends React.Component {
   render() {
     return(
       <div id={this.props.id}
-           className="haiku animate__animated animate__fadeInRight">
+           className=
+             {(this.props.fadeOut) ?
+              "haiku animate__animated animate__fadeOutLeft" :
+              "haiku animate__animated animate__fadeInRight" }>
         <h1 className="title">{this.props.title}</h1>
         <div className="content">
           <p>{this.props.content[0]}</p>
