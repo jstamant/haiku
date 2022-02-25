@@ -1,13 +1,21 @@
 import React from 'react';
 
 class Haiku extends React.Component {
+  constructor(props) {
+    super(props);
+    this.triggerUnmount = this.triggerUnmount.bind(this);
+  }
   render() {
+    // TODO need to remove fadeInRight after it animates, so it doesn't trigger
+    // again when the element moves in the DOM due to the way I store them in an
+    // array
     return(
       <div id={this.props.id}
            className=
              {(this.props.fadeOut) ?
               "haiku animate__animated animate__fadeOutLeft" :
-              "haiku animate__animated animate__fadeInRight" }>
+              "haiku animate__animated animate__fadeInRight" }
+           onAnimationEnd={this.triggerUnmount}>
         <h1 className="title">{this.props.title}</h1>
         <div className="content">
           <p>{this.props.content[0]}</p>
@@ -21,6 +29,11 @@ class Haiku extends React.Component {
         </div>
       </div>
     );
+  }
+
+  triggerUnmount() {
+    if (this.props.fadeOut)
+      this.props.animationEnd(this.props.selection-1);
   }
 }
 

@@ -12,7 +12,9 @@ class App extends React.Component {
     // is selection - 1
     this.state = {
       selection: 1,
+      deck: []
     };
+    // TODO make this CONST
     this.haikus = HaikuList;
     // Initially display the most recent haiku
     this.state.selection = this.haikus.length;
@@ -21,30 +23,27 @@ class App extends React.Component {
     const haiku = parseInt(url.searchParams.get('id'));
     if (1 <= haiku && haiku <= this.haikus.length)
       this.state.selection = haiku;
-    // Add the initially displayed haiku to the deck (for animation purposes)
-    this.deck = [];
-    this.deck.push(this.haikus[this.state.selection-1]);
-    // And add a "state" property for animation
-    this.deck[0].state = "fadeIn";
 
     // Bind functions that are used in events and/or callbacks
     this.changeHaiku = this.changeHaiku.bind(this);
+    this.animationEnd = this.animationEnd.bind(this);
   }
 
   render() {
     this.updateQueryString(this.state.selection);
     return(
       <>
-        {this.deck.map((haiku) => {
+        {this.state.deck.map((haiku) => {
           const fadeOut = (haiku.state == "fadeIn") ? false : true;
           return(
             <Haiku
               id="haiku"
               fadeOut={fadeOut}
-              title={this.haikus[this.state.selection-1].title}
-              date={this.haikus[this.state.selection-1].date}
-              content={this.haikus[this.state.selection-1].content}
-              selection={this.state.selection}
+              animationEnd={this.animationEnd}
+              title={haiku.title}
+              date={haiku.date}
+              content={haiku.content}
+              selection={haiku.number}
               total={this.haikus.length}
             />);
         })}
@@ -53,25 +52,35 @@ class App extends React.Component {
     );
   }
 
-  /* Commits the haiku selection by updating this component's state. Checks for
-   * boundary conditions and prevents them.
+  /*
+   * Adds a haiku to the app's deck of haikus. Takes an index, which determines
+   * which haiku in the HaikuList to add into the deck.
+   * Then, triggers the removal of the previous haiku.
    */
-  setSelection(selection) {
-    if (selection > this.haikus.length)
-      selection = this.haikus.length;
-    if (selection <= 0)
-      selection = 1;
-    this.deck.push(
-      <Haiku
-        id="haiku"
-        title={this.haikus[selection-1].title}
-        date={this.haikus[selection-1].date}
-        content={this.haikus[selection-1].content}
-        selection={selection}
-        total={this.haikus.length}
-      />);
-    // this.deck.shift();
-    this.setState({selection: selection});
+  addHaiku(index) {
+    let newDeck = this.state.deck.slice();
+    // Add the initially displayed haiku to the deck (for animation purposes)
+    const length = newDeck.push(this.haikus[index]);
+    // Add some properties that aren't included from the HaikuList
+    newDeck[length-1].state = "fadeIn"; // Added for tracking the animation
+    newDeck[length-1].number = index+1;
+    // Trigger removal of the previous haiku, which will be unmounted after its
+    // animation
+    if (length > 1) // (No haiku to remove if it's the first one being added)
+      newDeck[0].state = "fadeOut";
+    this.setState({deck: newDeck,
+                   selection: index+1});
+  }
+
+  /*
+   * Sets the state of a haiku that has faded-out to be unmounted. Requires an
+   * index to determine which haiku in the deck to remove.
+   */
+  animationEnd(index) {
+    let newDeck = this.state.deck;
+    // newDeck.splice(index, 1);
+    newDeck.shift();
+    this.setState(newDeck);
   }
 
   /* Changes displayed haiku to the next haiku, to the previous haiku, or to a
@@ -82,7 +91,6 @@ class App extends React.Component {
     switch (command) {
     default: case "next":
       newSelection = this.state.selection + 1;
-      this.setSelection(this.state.selection + 1);
       break;
     case "previous":
       newSelection = this.state.selection - 1;
@@ -95,6 +103,23 @@ class App extends React.Component {
       break;
     }
     this.setSelection(newSelection);
+  }
+
+  componentDidMount() {
+    // Add the initially displayed haiku to the deck (for animation purposes)
+    this.addHaiku(this.state.selection-1);
+  }
+
+  /* Commits the haiku selection by updating this component's state. Checks for
+   * boundary conditions and prevents them.
+   * TODO REMOVE this function
+   */
+  setSelection(selection) {
+    if (selection > this.haikus.length)
+      selection = this.haikus.length;
+    if (selection <= 0)
+      selection = 1;
+    this.addHaiku(selection-1);
   }
 
   /* Update the URL in the browser so that its query string matches the
