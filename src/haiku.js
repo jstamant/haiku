@@ -10,8 +10,7 @@ class Haiku extends React.Component {
     // again when the element moves in the DOM due to the way I store them in an
     // array
     return(
-      <div id={this.props.id}
-           className=
+      <div className=
              {(this.props.fadeOut) ?
               "haiku animate__animated animate__fadeOutLeft" :
               "haiku animate__animated animate__fadeInRight" }

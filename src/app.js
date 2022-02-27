@@ -37,7 +37,6 @@ class App extends React.Component {
           const fadeOut = (haiku.state == "fadeIn") ? false : true;
           return(
             <Haiku
-              id="haiku"
               fadeOut={fadeOut}
               animationEnd={this.animationEnd}
               title={haiku.title}
