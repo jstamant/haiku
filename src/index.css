@@ -26,7 +26,9 @@ body {
  */
 
 .haiku {
+  /* position: absolute is required to collapse all haikus into one slot */
   position: absolute;
+  top: 0;
   width: 100%;
   box-sizing: border-box;
 
@@ -36,6 +38,11 @@ body {
   margin: 0; /* Top padding is done by the body element */
   margin-bottom: 2em;
   font-family: 'Permanent Marker', sans-serif;
+}
+.haiku:first-child {
+  /* The first haiku in #root is used to set the spacing for placing the interface
+   buttons below it */
+  position: relative;
 }
 .haiku * {
   text-align: center;
