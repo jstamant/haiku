@@ -4,6 +4,7 @@ import Haiku from './haiku';
 import Interface from './interface';
 
 import HaikuList from './haikulist';
+const haikuList = HaikuList;
 
 class App extends React.Component {
   constructor(props) {
@@ -14,14 +15,12 @@ class App extends React.Component {
       selection: 1,
       deck: []
     };
-    // TODO make this CONST
-    this.haikus = HaikuList;
     // Initially display the most recent haiku
-    this.state.selection = this.haikus.length;
+    this.state.selection = haikuList.length;
     // Or display the haiku as indicated by the query string, if valid
     const url = new URL(window.location.href);
     const haiku = parseInt(url.searchParams.get('id'));
-    if (1 <= haiku && haiku <= this.haikus.length)
+    if (1 <= haiku && haiku <= haikuList.length)
       this.state.selection = haiku;
 
     // Bind functions that are used in events and/or callbacks
@@ -45,7 +44,7 @@ class App extends React.Component {
               date={haiku.date}
               content={haiku.content}
               selection={haiku.number}
-              total={this.haikus.length}
+              total={haikuList.length}
             />);
         })}
         <Interface changeHaiku={this.changeHaiku} />
@@ -62,7 +61,7 @@ class App extends React.Component {
     let newDeck = [...this.state.deck];
     // Add the initially displayed haiku to the deck (for animation purposes)
     // Pushing to the front to prevent from re-animating when it gets moved in the DOM
-    newDeck.unshift(this.haikus[index]);
+    newDeck.unshift(haikuList[index]);
     // Add some properties that aren't included from the HaikuList
     newDeck[0].state = "in"; // Added for tracking the animation
     newDeck[0].number = index+1;
@@ -88,13 +87,13 @@ class App extends React.Component {
     case "random":
       do {
         // Prevent the currently displayed haiku from being selected again
-        newSelection = Math.floor(Math.random() * this.haikus.length) + 1;
+        newSelection = Math.floor(Math.random() * haikuList.length) + 1;
       } while (newSelection === this.state.selection);
     }
     // Prevent boundary conditions, and
     // only add a haiku if we're flipping to a new one
-    if (newSelection > this.haikus.length) {
-      newSelection = this.haikus.length; return; }
+    if (newSelection > haikuList.length) {
+      newSelection = haikuList.length; return; }
     if (newSelection <= 0) {
       newSelection = 1; return; }
     this.addHaiku(newSelection-1);
