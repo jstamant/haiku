@@ -3,18 +3,23 @@ import React from 'react';
 class Haiku extends React.Component {
   constructor(props) {
     super(props);
-    this.triggerUnmount = this.triggerUnmount.bind(this);
+    this.animationEnded = this.animationEnded.bind(this);
   }
   render() {
-    // TODO need to remove fadeInRight after it animates, so it doesn't trigger
-    // again when the element moves in the DOM due to the way I store them in an
-    // array
+    let animationClass;
+    switch (this.props.animationState) {
+    case "out":
+      animationClass = "animate__animated animate__fadeOutLeft";
+      break;
+    case "in":
+      animationClass = "animate__animated animate__fadeInRight";
+      break;
+    default: case "idle":
+      animationClass = "";
+    }
     return(
-      <div className=
-             {(this.props.fadeOut) ?
-              "haiku animate__animated animate__fadeOutLeft" :
-              "haiku animate__animated animate__fadeInRight" }
-           onAnimationEnd={this.triggerUnmount}>
+      <div className={"haiku" + ((animationClass) ? " " : "") + animationClass}
+           onAnimationEnd={this.animationEnded}>
         <h1 className="title">{this.props.title}</h1>
         <div className="content">
           <p>{this.props.content[0]}</p>
@@ -30,9 +35,11 @@ class Haiku extends React.Component {
     );
   }
 
-  triggerUnmount() {
-    if (this.props.fadeOut)
-      this.props.animationEnd(this.props.selection-1);
+  animationEnded() {
+    if (this.props.animationState === "in")
+      this.props.updateAnimationState(this.props.selection, "idle");
+    if (this.props.animationState === "out")
+      this.props.triggerUnmount(this.props.selection);
   }
 }
 

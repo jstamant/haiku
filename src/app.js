@@ -26,7 +26,8 @@ class App extends React.Component {
 
     // Bind functions that are used in events and/or callbacks
     this.changeHaiku = this.changeHaiku.bind(this);
-    this.animationEnd = this.animationEnd.bind(this);
+    this.unmountHaiku = this.unmountHaiku.bind(this);
+    this.updateHaiku = this.updateHaiku.bind(this);
   }
 
   render() {
@@ -34,11 +35,11 @@ class App extends React.Component {
     return(
       <>
         {this.state.deck.map((haiku) => {
-          const fadeOut = (haiku.state == "fadeIn") ? false : true;
           return(
             <Haiku
-              fadeOut={fadeOut}
-              animationEnd={this.animationEnd}
+              animationState={haiku.state}
+              updateAnimationState={this.updateHaiku}
+              triggerUnmount={this.unmountHaiku}
               title={haiku.title}
               date={haiku.date}
               content={haiku.content}
@@ -51,35 +52,24 @@ class App extends React.Component {
     );
   }
 
-  /*
-   * Adds a haiku to the app's deck of haikus. Takes an index, which determines
+  /* Adds a haiku to the app's deck of haikus. Takes an index, which determines
    * which haiku in the HaikuList to add into the deck.
    * Then, triggers the removal of the previous haiku.
+   * Remember, haiku #1 is index [0]
    */
   addHaiku(index) {
-    let newDeck = this.state.deck.slice();
+    let newDeck = [...this.state.deck];
     // Add the initially displayed haiku to the deck (for animation purposes)
-    const length = newDeck.push(this.haikus[index]);
+    // Pushing to the front to prevent from re-animating when it gets moved in the DOM
+    newDeck.unshift(this.haikus[index]);
     // Add some properties that aren't included from the HaikuList
-    newDeck[length-1].state = "fadeIn"; // Added for tracking the animation
-    newDeck[length-1].number = index+1;
-    // Trigger removal of the previous haiku, which will be unmounted after its
-    // animation
-    if (length > 1) // (No haiku to remove if it's the first one being added)
-      newDeck[0].state = "fadeOut";
-    this.setState({deck: newDeck,
-                   selection: index+1});
-  }
-
-  /*
-   * Sets the state of a haiku that has faded-out to be unmounted. Requires an
-   * index to determine which haiku in the deck to remove.
-   */
-  animationEnd(index) {
-    let newDeck = this.state.deck;
-    // newDeck.splice(index, 1);
-    newDeck.shift();
-    this.setState(newDeck);
+    newDeck[0].state = "in"; // Added for tracking the animation
+    newDeck[0].number = index+1;
+    // Trigger removal of all previous haikus, which will be unmounted after
+    // their animation
+    newDeck.forEach((haiku) => {
+      if (haiku.number !== index+1) haiku.state = "out";});
+    this.setState({deck: newDeck, selection: index+1});
   }
 
   /* Changes displayed haiku to the next haiku, to the previous haiku, or to a
@@ -104,8 +94,11 @@ class App extends React.Component {
     this.setSelection(newSelection);
   }
 
+  /* Overloading the React component method for App.js
+   * Add the initially displayed haiku to the deck once the app is loaded.
+   * For animation purposes.
+   */
   componentDidMount() {
-    // Add the initially displayed haiku to the deck (for animation purposes)
     this.addHaiku(this.state.selection-1);
   }
 
@@ -121,13 +114,34 @@ class App extends React.Component {
     this.addHaiku(selection-1);
   }
 
+  /* Sets the state of a haiku that has faded-out to be unmounted.
+   * Takes a haiku number to determine which haiku to remove.
+   */
+  unmountHaiku(number) {
+    console.log(this.state.deck);
+    let newDeck = this.state.deck.filter((haiku) => {
+      return haiku.number !== number;});
+    console.log(newDeck);
+    this.setState({deck: newDeck});
+  }
+
+  /* Changes the animation state of a haiku in the deck.
+   * Takes a haiku number to determine which haiku to update.
+   */
+  updateHaiku(number, state) {
+    let newDeck = [...this.state.deck];
+    newDeck.forEach((haiku) => {
+      if (haiku.number === number) haiku.state = state;});
+    this.setState({deck: newDeck});
+  }
+
   /* Update the URL in the browser so that its query string matches the
    * displayed haiku.
    */
   updateQueryString(id) {
     // Using the window.history object allows us to prevent a reload upon
     // changing the query string the way that the window.location object does.
-    let path = window.location.pathname + '?' + 'id=' + id;
+    let path = window.location.pathname + '?id=' + id;
     window.history.pushState(null, '', path);
   }
 }
