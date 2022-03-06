@@ -74,7 +74,7 @@ class App extends React.Component {
   }
 
   /* Changes displayed haiku to the next haiku, to the previous haiku, or to a
-   * random haiku.
+   * random haiku. Then, prevents boundary conditions from occurring.
    */
   changeHaiku(command="next") {
     let newSelection;
@@ -90,9 +90,14 @@ class App extends React.Component {
         // Prevent the currently displayed haiku from being selected again
         newSelection = Math.floor(Math.random() * this.haikus.length) + 1;
       } while (newSelection === this.state.selection);
-      break;
     }
-    this.setSelection(newSelection);
+    // Prevent boundary conditions, and
+    // only add a haiku if we're flipping to a new one
+    if (newSelection > this.haikus.length) {
+      newSelection = this.haikus.length; return; }
+    if (newSelection <= 0) {
+      newSelection = 1; return; }
+    this.addHaiku(newSelection-1);
   }
 
   /* Overloading the React component method for App.js
@@ -101,18 +106,6 @@ class App extends React.Component {
    */
   componentDidMount() {
     this.addHaiku(this.state.selection-1);
-  }
-
-  /* Commits the haiku selection by updating this component's state. Checks for
-   * boundary conditions and prevents them.
-   * TODO REMOVE this function
-   */
-  setSelection(selection) {
-    if (selection > this.haikus.length)
-      selection = this.haikus.length;
-    if (selection <= 0)
-      selection = 1;
-    this.addHaiku(selection-1);
   }
 
   /* Sets the state of a haiku that has faded-out to be unmounted.
