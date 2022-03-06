@@ -37,7 +37,7 @@ class Haiku extends React.Component {
 
   animationEnded() {
     if (this.props.animationState === "in")
-      this.props.updateAnimationState(this.props.selection, "idle");
+      this.props.gotoIdle(this.props.selection);
     if (this.props.animationState === "out")
       this.props.triggerUnmount(this.props.selection);
   }

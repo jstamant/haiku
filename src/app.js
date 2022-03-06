@@ -13,6 +13,7 @@ class App extends React.Component {
     // is selection - 1
     this.state = {
       selection: 1,
+      inTransition: false,
       deck: []
     };
     // Initially display the most recent haiku
@@ -26,7 +27,7 @@ class App extends React.Component {
     // Bind functions that are used in events and/or callbacks
     this.changeHaiku = this.changeHaiku.bind(this);
     this.unmountHaiku = this.unmountHaiku.bind(this);
-    this.updateHaiku = this.updateHaiku.bind(this);
+    this.idleHaiku = this.idleHaiku.bind(this);
   }
 
   render() {
@@ -38,7 +39,7 @@ class App extends React.Component {
             <Haiku
               key={index}
               animationState={haiku.state}
-              updateAnimationState={this.updateHaiku}
+              gotoIdle={this.idleHaiku}
               triggerUnmount={this.unmountHaiku}
               title={haiku.title}
               date={haiku.date}
@@ -69,13 +70,15 @@ class App extends React.Component {
     // their animation
     newDeck.forEach((haiku) => {
       if (haiku.number !== index+1) haiku.state = "out";});
-    this.setState({deck: newDeck, selection: index+1});
+    this.setState({deck: newDeck, selection: index+1, inTransition: true});
   }
 
   /* Changes displayed haiku to the next haiku, to the previous haiku, or to a
    * random haiku. Then, prevents boundary conditions from occurring.
    */
   changeHaiku(command="next") {
+    // Do not change haiku if currently flipping/animating between a pair
+    if (this.state.inTransition) return;
     let newSelection;
     switch (command) {
     default: case "next":
@@ -116,14 +119,15 @@ class App extends React.Component {
     this.setState({deck: newDeck});
   }
 
-  /* Changes the animation state of a haiku in the deck.
-   * Takes a haiku number to determine which haiku to update.
+  /* Changes the animation state of a haiku in the deck to "idle".
+   * Takes a haiku number to determine which haiku to idle.
+   * Then readies the app for flipping to the next haiku.
    */
-  updateHaiku(number, state) {
+  idleHaiku(number) {
     let newDeck = [...this.state.deck];
     newDeck.forEach((haiku) => {
-      if (haiku.number === number) haiku.state = state;});
-    this.setState({deck: newDeck});
+      if (haiku.number === number) haiku.state = "idle";});
+    this.setState({deck: newDeck, inTransition: false});
   }
 
   /* Update the URL in the browser so that its query string matches the
