@@ -34,9 +34,10 @@ class App extends React.Component {
     this.updateQueryString(this.state.selection);
     return(
       <>
-        {this.state.deck.map((haiku) => {
+        {this.state.deck.map((haiku, index) => {
           return(
             <Haiku
+              key={index}
               animationState={haiku.state}
               updateAnimationState={this.updateHaiku}
               triggerUnmount={this.unmountHaiku}
@@ -118,10 +119,8 @@ class App extends React.Component {
    * Takes a haiku number to determine which haiku to remove.
    */
   unmountHaiku(number) {
-    console.log(this.state.deck);
     let newDeck = this.state.deck.filter((haiku) => {
       return haiku.number !== number;});
-    console.log(newDeck);
     this.setState({deck: newDeck});
   }
 
