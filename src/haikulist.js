@@ -30,6 +30,10 @@ const HaikuList = [
   { "title": "Techs connect in a single try",
     "date": "2021-11-30",
     "content": ["A true tech connects", "to 15454 (fifteen-four-fifty-four)", "in a single try"]
+  },
+  { "title": "Ladder safety",
+    "date": "2022-03-09",
+    "content": ["Source of injuries:", "Portable Ladder Safety", "non-negotiable."]
   }
 ];
 
