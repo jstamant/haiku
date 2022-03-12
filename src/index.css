@@ -3,7 +3,7 @@
  */
 
 html {
-  background-color: #f5f5ed;
+  background-color: #f6f9fc;
   height: 100%;
 }
 
@@ -11,7 +11,7 @@ body {
   padding: 2em 1em;
   margin: 0;
   font-size: 100%; /* All em sizes are constrained by the user's browser's font size */
-  color: #3f3b3b;
+  color: #222;
   overflow: hidden;
 }
 
@@ -32,8 +32,9 @@ body {
   width: 100%;
   box-sizing: border-box;
 
-  background-color: #ede6d5;
+  background-color: #ecf2f5;
   padding: 2em;
+  border: 1px solid #bcd;
   border-radius: 2em;
   margin: 0; /* Top padding is done by the body element */
   margin-bottom: 2em;
@@ -123,5 +124,6 @@ button {
   margin: 0;
   width: 100%;
   border-radius: 1em;
-  border-style: none;
+  border: 1px solid #bcd;
+  background-color: #ecf2f5;
 }
