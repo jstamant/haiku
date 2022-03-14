@@ -10,7 +10,8 @@ html {
 body {
   padding: 2em 1em;
   margin: 0;
-  font-size: 100%; /* All em sizes are constrained by the user's browser's font size */
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px; /* Forcing all platforms to use 16px font height. Required to fit nicely on small screens. */
   color: #222;
   overflow: hidden;
 }
@@ -37,8 +38,6 @@ body {
   border: 1px solid #bcd;
   border-radius: 2em;
   margin: 0; /* Top padding is done by the body element */
-  margin-bottom: 2em;
-  font-family: 'Permanent Marker', sans-serif;
 }
 .haiku:first-child {
   /* The first haiku in #root is used to set the spacing for placing the interface
@@ -50,20 +49,15 @@ body {
 }
 .haiku .title {
   margin: 0;
-  font-weight: normal;
+  font-weight: bold;
   font-size: 2em;
-  line-height: 1em; /* Adjusted for 'Permanent Marker' font */
 }
 .haiku .content {
   margin: 0.5em 0;
 }
 .haiku .content p {
   margin: 0;
-  font-family: 'Kalam', sans-serif;
-  font-variant: small-caps;
-  font-weight: bold;
   font-size: 1.5em;
-  height: 1.2em; /* Adjusted for 'Kalam' font */
 }
 .haiku .signature {
   margin: 1em auto 0 auto;
@@ -116,7 +110,7 @@ body {
   width: 100%;
   box-sizing: border-box;
   padding: 0 1em;
-  margin: 1em 0;
+  margin: 0 0 1em 0;
   display: inline-block;
 }
 button {
