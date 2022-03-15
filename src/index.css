@@ -120,4 +120,8 @@ button {
   border-radius: 1em;
   border: 1px solid #bcd;
   background-color: #ecf2f5;
+  /* Need to do these following properties to override user-agent stylesheet */
+  /* Refer to Normalize, or similar, to figure out the best compatibility solutions*/
+  font-family: inherit;
+  font-size: 100%;
 }
