@@ -34,6 +34,10 @@ const HaikuList = [
   { "title": "Ladder safety",
     "date": "2022-03-09",
     "content": ["Source of injuries:", "Portable Ladder Safety", "non-negotiable."]
+  },
+  { "title": "Testing a GPS messenger",
+    "date": "2022-04-01",
+    "content": ["For testing the SPOT,", "press the S.O.S. button.", "Ensure help arrives."]
   }
 ];
 
