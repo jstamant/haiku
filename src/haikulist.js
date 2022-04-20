@@ -38,6 +38,10 @@ const HaikuList = [
   { "title": "Testing a GPS messenger",
     "date": "2022-04-01",
     "content": ["For testing the SPOT,", "press the S.O.S. button.", "Ensure help arrives."]
+  },
+  { "title": "Obey thy supervisor",
+    "date": "2022-04-20",
+    "content": ["Thou shalt obey thy", "supervisor, or drown in", "needless overnights."]
   }
 ];
 
