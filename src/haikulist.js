@@ -42,6 +42,10 @@ const HaikuList = [
   { "title": "Obey thy supervisor",
     "date": "2022-04-20",
     "content": ["Thou shalt obey thy", "supervisor, or drown in", "needless overnights."]
+  },
+  { "title": "We no use brain",
+    "date": "2022-05-13",
+    "content": ["Technician use hands,", "but no use brain like monkey", "do oo-ooh a-aah!"]
   }
 ];
 
