@@ -46,6 +46,10 @@ const HaikuList = [
   { "title": "We no use brain",
     "date": "2022-05-13",
     "content": ["Technician use hands,", "but no use brain like monkey", "do oo-ooh a-aah!"]
+  },
+  { "title": "Mic problems",
+    "date": "2022-05-27",
+    "content": ["How can you tell if", "you have mic problems, or if", "we're ignoring you?"]
   }
 ];
 
