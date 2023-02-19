@@ -2,6 +2,8 @@
 
 This is the repository for a website to present my haikus.
 
+![Screenshot](/doc/2023-02-19-165449-scrot.png)
+
 The goal of this project is to familiarize myself with the technologies that go
 into full-stack development. This project will start with javascript and React
 for the interface, and as it expands, I might look into adding MongoDB and
